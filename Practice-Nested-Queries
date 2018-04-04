@@ -5,7 +5,7 @@ Get all invoices where the UnitPrice on the InvoiceLine is greater than $0.99.
 
 Get all Playlist Tracks where the playlist name is Music.
   SELECT * FROM playlisttrack
-  WHERE playlistid IN
+  WHERE playlistid =
   (SELECT playlistid FROM playlist WHERE name = 'Music');
 
 Get all Track names for PlaylistId 5.
