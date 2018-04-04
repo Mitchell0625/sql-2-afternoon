@@ -1,0 +1,52 @@
+Create 3 tables following the criteria in the summary.
+-Users need a name and an email.
+-Products need a name and a price
+-Orders need a ref to product.
+-All 3 need primary keys.
+
+CREATE TABLE users (
+  userid  INTEGER PRIMARY KEY AUTOINCREMENT,
+  name VARCHAR(200),
+  email VARCHAR(200));
+  
+ CREATE TABLE products (
+  productid INTEGER PRIMARY KEY AUTOINCREMENT,
+  productname VARCHAR(50),
+  price NUMERIC(10,2));
+  
+  CREATE TABLE orders (
+  orderid INTEGER PRIMARY KEY AUTOINCREMENT,
+  product_id INTEGER REFERENCES products(productid),
+  total NUMERIC(10,2));
+  
+Add some data to fill up each table.
+-At least 3 users, 3 products, 3 orders.
+
+INSERT INTO users (name, email)
+VALUES
+('Mark', 'mark@gmail.com'),
+('Manny', 'manzilla@gmail.com'),
+('Kim', 'kimmmm@gmail.com');
+
+INSERT INTO products (productname, price)
+VALUES
+('Bomber Jacket', 55.00),
+('Puffer Vest', 45.00),
+('Trench Coat', 80.00);
+
+INSERT INTO orders (product_id, total)
+VALUES
+(1, 55.00),
+(2, 45.00),
+(3, 80.00);
+
+Get all products for the first order.
+  SELECT products.productname FROM products
+  JOIN orders ON products.productid = orders.product_id
+  WHERE orders.orderid = 1;
+
+Get all orders.
+  SELECT * FROM orders;
+  
+Get the total cost of an order ( sum the price of all products on an order )
+
