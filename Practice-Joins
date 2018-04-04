@@ -1,0 +1,40 @@
+Get all invoices where the UnitPrice on the InvoiceLine is greater than $0.99.
+  SELECT * FROM invoice
+  JOIN invoiceline ON invoice.invoiceid = invoiceline.invoiceid
+  WHERE invoiceline.unitprice > 0.99;
+
+Get the InvoiceDate, customer FirstName and LastName, and Total from all invoices.
+  SELECT inv.invoicedate, cust.firstname, cust.lastname, inv.total FROM invoice inv
+  JOIN customer cust ON inv.customerid = cust.customerid;
+
+Get the customer FirstName and LastName and the support rep's FirstName and LastName from all customers.
+Support reps are on the Employee table.
+  SELECT cust.firstname, cust.lastname, emp.firstname, emp.lastname FROM customer cust
+  JOIN employee emp ON cust.supportrepid = emp.employeeid;
+
+Get the album Title and the artist Name from all albums.
+  SELECT al.title, ar.name FROM album al
+  JOIN artist ar ON al.artistid = ar.artistid;
+
+Get all PlaylistTrack TrackIds where the playlist Name is Music.
+  SELECT track.trackid FROM playlisttrack track
+  JOIN playlist list ON track.playlistid = list.playlistid
+  WHERE list.name = 'Music';
+
+Get all Track Names for PlaylistId 5.
+  SELECT track.name FROM playlisttrack pt
+  JOIN track ON pt.trackid = track.trackid
+  WHERE pt.playlistid = 5;
+
+Get all Track Names and the playlist Name that they're on ( 2 joins ).
+    SELECT track.name, play.name FROM track
+    JOIN playlisttrack pt ON track.trackid = pt.trackid
+    JOIN playlist play ON pt.playlistid = play.playlistid;
+
+Get all Track Names and Album Titles that are the genre "Alternative" ( 2 joins ).
+  SELECT track.name, al.title FROM track
+  JOIN album al ON track.albumid = al.albumid
+  JOIN genre ON track.genreid = genre.genreid
+  WHERE genre.name = 'Alternative';
+
+
