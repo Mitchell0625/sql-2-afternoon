@@ -49,4 +49,23 @@ Get all orders.
   SELECT * FROM orders;
   
 Get the total cost of an order ( sum the price of all products on an order )
+  SELECT orderid, SUM(total) FROM orders
+  GROUP BY orderid;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
